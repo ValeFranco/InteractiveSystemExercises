@@ -16,19 +16,19 @@ public class MyBolita : MonoBehaviour
     void Update()
     {
         position.Draw(Color.blue);
-        displacement.Draw(Color.red);
+        displacement.Draw(position, Color.red); //position indica que el origen del vector va a ser siempre en la bolita
     }
 
     public void Move()
     {
         position = position + displacement;
 
-        if(position.x > camara.orthographicSize)
+        if (Mathf.Abs(position.x) > camara.orthographicSize)
         {
             displacement.x = displacement.x * -1;
-            position.x = camara.orthographicSize;
+            position.x = Mathf.Sign(position.x) * camara.orthographicSize;
         }
-        transform.position = new Vector3(transform.position.x, transform.position.y); //referenciar el mov de la bolita para que se mueva con los vectores
+        transform.position = new Vector3(position.x, position.y); //referenciar el mov de la bolita para que se mueva con los vectores
     }
 
     private void CheckBounds()
