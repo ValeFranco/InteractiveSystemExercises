@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class MyBolita : MonoBehaviour
+public class MyBolitaFallingIntoBlackHole : MonoBehaviour
 {
     private MyVector2D position;
     private MyVector2D displacement;
