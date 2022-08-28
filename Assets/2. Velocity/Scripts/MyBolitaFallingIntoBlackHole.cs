@@ -6,10 +6,10 @@ using UnityEngine;
 public class MyBolitaFallingIntoBlackHole : MonoBehaviour
 {
     private MyVector2D position;
-    private MyVector2D displacement;
     [SerializeField] private MyVector2D velocity;
-    [SerializeField] private MyVector2D acceleration;
-    
+    private MyVector2D acceleration;
+   
+
     [SerializeField] Camera camara;
     [SerializeField] private Transform blackHole;
 
@@ -22,19 +22,17 @@ public class MyBolitaFallingIntoBlackHole : MonoBehaviour
     private void FixedUpdate()
     {
         Move(); //lo pongo aqui para tener un deltatime fijo
+        
     }
     void Update() //se llama muchas veces en un segundo
     {
-        position.Draw(Color.blue);
-        displacement.Draw(position, Color.red); //position indica que el origen del vector va a ser siempre en la bolita
-        acceleration.Draw(position, Color.green);
+       // position.Draw(Color.red);
+        velocity.Draw(Color.blue);
+        acceleration.Draw(Color.green);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            acceleration = directions[(++currentAcceleration) % directions.Length];
-            velocity *= 0; 
-            //acceleration.x = acceleration.x+1f;
-        }
+        MyVector2D position = new MyVector2D(transform.position.x, transform.position.y);
+        MyVector2D blackHolePosition = new MyVector2D(blackHole.position.x, blackHole.position.y);
+        acceleration = blackHolePosition - position;
     }
 
     public void Move()
