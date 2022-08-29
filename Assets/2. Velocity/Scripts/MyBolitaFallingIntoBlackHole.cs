@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class MyBolitaFallingIntoBlackHole : MonoBehaviour
 {
-    private MyVector2D position;
+    
     [SerializeField] private MyVector2D velocity;
     private MyVector2D acceleration;
-   
+    [SerializeField] private Transform blackHole;
+    private MyVector2D position;
 
     [SerializeField] Camera camara;
-    [SerializeField] private Transform blackHole;
 
 
     void Start()
@@ -26,13 +26,13 @@ public class MyBolitaFallingIntoBlackHole : MonoBehaviour
     }
     void Update() //se llama muchas veces en un segundo
     {
-       // position.Draw(Color.red);
-        velocity.Draw(Color.blue);
-        acceleration.Draw(Color.green);
-
-        MyVector2D position = new MyVector2D(transform.position.x, transform.position.y);
+        position = new MyVector2D(transform.position.x, transform.position.y);
         MyVector2D blackHolePosition = new MyVector2D(blackHole.position.x, blackHole.position.y);
         acceleration = blackHolePosition - position;
+
+        position.Draw(Color.red);
+        velocity.Draw(Color.blue);
+        acceleration.Draw(Color.green);
     }
 
     public void Move()

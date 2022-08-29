@@ -8,6 +8,8 @@ public struct MyVector2D
     public float x;
     public float y;
 
+    float magnitude => Mathf.Sqrt(x * x + y * y); //raiz cuadrada de x al cuadrado + y al cuadrado
+    
     public MyVector2D(float x, float y) //constructor
     {
         this.x = x;
@@ -73,7 +75,15 @@ public struct MyVector2D
     {
         return new MyVector2D(a.x * b, a.y * b);
     }
-   
+    public static MyVector2D operator *(float b, MyVector2D a)
+    {
+        return new MyVector2D(a.x * b, a.y * b);
+    }
+    public static MyVector2D operator /(MyVector2D a, float b)
+    {
+        return new MyVector2D(a.x / b, a.y / b);
+    }
+
     public void Draw(Color color)
     {
         Debug.DrawLine(
