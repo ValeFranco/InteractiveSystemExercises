@@ -17,6 +17,7 @@ public class MyBolitaWithForces : MonoBehaviour
     private MyVector2D weight;
 
     [Range(0f,1f)] [SerializeField] private float dampingFactor;
+    [Range(0f, 1f)] [SerializeField] private float frictionCoeficent;
     [SerializeField] Camera camara;
 
     void Start()
@@ -27,18 +28,26 @@ public class MyBolitaWithForces : MonoBehaviour
     private void FixedUpdate()
     {
         netForce = new MyVector2D(0, 0); //cada vez que inicia receteamos net force para que no incremente a lo loco
-        weight = mass * gravity;
 
+        //weight
+        weight = mass * gravity;
         ApplyForce(weight);
+
+        //Friction
+        MyVector2D friction = -frictionCoeficent * weight.magnitude * velocity.normalized;
+        ApplyForce(friction);
+        friction.Draw(position, Color.black);
+
+        //wind
         ApplyForce(wind);
-        
+
         Move(); //lo pongo aqui para tener un deltatime fijo
     }
     void Update() //se llama muchas veces en un segundo
     {
         position.Draw(Color.blue);
         velocity.Draw(position, Color.red); //position indica que el origen del vector va a ser siempre en la bolita
-        acceleration.Draw(position, Color.green); 
+        //acceleration.Draw(position, Color.green); 
     }
 
     public void Move()

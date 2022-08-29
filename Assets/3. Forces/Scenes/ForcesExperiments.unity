@@ -325,6 +325,7 @@ MonoBehaviour:
     x: 1
     y: 0
   dampingFactor: 1
+  frictionCoeficent: 0.887
   camara: {fileID: 1564312307}
 --- !u!1 &1564312305
 GameObject:
@@ -634,6 +635,7 @@ MonoBehaviour:
     x: 1
     y: 0
   dampingFactor: 1
+  frictionCoeficent: 0.469
   camara: {fileID: 1564312307}
 --- !u!212 &1968044310
 SpriteRenderer:

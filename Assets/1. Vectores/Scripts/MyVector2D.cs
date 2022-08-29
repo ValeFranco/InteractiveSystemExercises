@@ -8,14 +8,35 @@ public struct MyVector2D
     public float x;
     public float y;
 
-    float magnitude => Mathf.Sqrt(x * x + y * y); //raiz cuadrada de x al cuadrado + y al cuadrado
-    
+    public float magnitude => Mathf.Sqrt(x * x + y * y); //raiz cuadrada de x al cuadrado + y al cuadrado  
+    public MyVector2D normalized
+    {
+        get
+        {
+            if(magnitude <= 0.0001)
+            {
+                return new MyVector2D(0, 0);
+            }
+            return new MyVector2D(x / magnitude, y / magnitude); //es 1
+        }
+    }  
+
     public MyVector2D(float x, float y) //constructor
     {
         this.x = x;
         this.y = y;
     }
 
+    public void Normalize()
+    {
+        float tolerance = 0.0001f;
+        if (magnitude <= tolerance)
+        {
+            x = 0;y = 0;
+            return; //que no haga nada
+        }
+        x /= magnitude; y /= magnitude; 
+    }
     //public MyVector2D Sum(MyVector2D a) //funcion devuelve un vector
     //{
     //    return new MyVector2D(
