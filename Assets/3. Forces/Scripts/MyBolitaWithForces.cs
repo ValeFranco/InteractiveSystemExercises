@@ -30,6 +30,7 @@ public class MyBolitaWithForces : MonoBehaviour
 
     void Start()
     {
+        //transform.forward
         position = new MyVector2D(transform.position.x, transform.position.y);
     }
 
@@ -61,7 +62,7 @@ public class MyBolitaWithForces : MonoBehaviour
         }
 
         //wind
-        //ApplyForce(wind);
+        ApplyForce(wind);
 
         Move(); //lo pongo aqui para tener un deltatime fijo
     }
