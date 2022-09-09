@@ -12,6 +12,8 @@ public class MyBolitaWithForces : MonoBehaviour
         Gravity
     }
 
+    public float Mass => mass;
+
     private MyVector2D position;
     [SerializeField] private BolitaRunMode runMode;
     [SerializeField] private MyVector2D velocity;
@@ -25,6 +27,7 @@ public class MyBolitaWithForces : MonoBehaviour
     private MyVector2D weight;
 
     [SerializeField] private Camera camara;
+    [SerializeField] private MyBolitaWithForces otherBolita;
     [Range(0f,1f)] [SerializeField] private float dampingFactor=0.9f;
     [Range(0f, 1f)] [SerializeField] private float frictionCoeficent=0.9f;
 
@@ -48,6 +51,9 @@ public class MyBolitaWithForces : MonoBehaviour
         if (runMode == BolitaRunMode.FluidFriction)
         {
             //Fluid Friction
+            if (transform.position.y > 0.9)
+                ApplyFriction();
+
             if (transform.position.y <= 0.9)
             ApplyFluidFriction();
         }
@@ -58,11 +64,11 @@ public class MyBolitaWithForces : MonoBehaviour
 
         }else if (runMode == BolitaRunMode.Gravity)
         {
-
+            Gravity();
         }
 
         //wind
-        ApplyForce(wind);
+        //ApplyForce(wind);
 
         Move(); //lo pongo aqui para tener un deltatime fijo
     }
@@ -81,6 +87,13 @@ public class MyBolitaWithForces : MonoBehaviour
         if(runMode!= BolitaRunMode.Gravity)
         {
              CheckWolrdBoxBounds();
+        }
+        else
+        {
+            if (velocity.magnitude >= 10) 
+            {
+                velocity = 10f * velocity.normalized;
+            }
         }
 
         transform.position = new Vector3(position.x, position.y);//referenciar el mov de la bolita para que se mueva con los vectores
@@ -132,5 +145,12 @@ public class MyBolitaWithForces : MonoBehaviour
             position.y = Mathf.Sign(position.y) * camara.orthographicSize;
             velocity *= dampingFactor;
         }
+    }
+
+    private void Gravity()
+    {
+        MyVector2D r = otherBolita.position - position;
+        MyVector2D gravity = ((mass * otherBolita.mass) / Mathf.Pow(r.magnitude, 2)) * r.normalized;
+        ApplyForce(gravity);
     }
 }
