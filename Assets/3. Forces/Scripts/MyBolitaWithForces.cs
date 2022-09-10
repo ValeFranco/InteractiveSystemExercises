@@ -12,8 +12,6 @@ public class MyBolitaWithForces : MonoBehaviour
         Gravity
     }
 
-    public float Mass => mass;
-
     private MyVector2D position;
     [SerializeField] private BolitaRunMode runMode;
     [SerializeField] private MyVector2D velocity;
