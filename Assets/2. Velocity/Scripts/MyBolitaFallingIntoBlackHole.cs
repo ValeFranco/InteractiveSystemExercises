@@ -6,10 +6,10 @@ using UnityEngine;
 public class MyBolitaFallingIntoBlackHole : MonoBehaviour
 {
     
-    [SerializeField] private MyVector2D velocity;
-    private MyVector2D acceleration;
-    [SerializeField] private Transform blackHole;
-    private MyVector2D position;
+    public MyVector2D velocity;
+    public MyVector2D acceleration;
+    public Transform blackHole;
+    public MyVector2D position;
 
     [SerializeField] Camera camara;
 
