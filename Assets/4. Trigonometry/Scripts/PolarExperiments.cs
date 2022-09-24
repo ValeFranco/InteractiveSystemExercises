@@ -16,6 +16,7 @@ public class PolarExperiments : MonoBehaviour
 
     [Header("World")]
     [SerializeField] Transform bolita;
+    [SerializeField] Camera camara;
 
     // Start is called before the first frame update
     private void Start()
@@ -32,7 +33,19 @@ public class PolarExperiments : MonoBehaviour
 
         //update the bolita position
         bolita.position = PolarToCartesian(radius, angleDeg);
-        Debug.DrawLine(Vector3.zero, bolita.position);  
+        Debug.DrawLine(Vector3.zero, bolita.position);
+
+        //if (Mathf.Abs(bolita.position.x) >= camara.orthographicSize)
+        //{
+        //    if (Mathf.Abs(radialAcceleration) >= 5)
+        //    {
+        //        radialAcceleration = -radialAcceleration;
+        //    }
+        //    else
+        //    {
+        //        radialSpeed = -radialSpeed;
+        //    }
+        //}
     }
 
     private Vector3 PolarToCartesian(float radius, float angle)
@@ -41,4 +54,5 @@ public class PolarExperiments : MonoBehaviour
         float y = radius * Mathf.Sin(angle * Mathf.Deg2Rad);
         return new Vector3(x, y, 0);
     }
+
 }

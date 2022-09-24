@@ -154,9 +154,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0
   angleDeg: 0
-  anglularSpeed: 30
+  angularSpeed: 30
   radialSpeed: 0.1
+  radialAcceleration: 0
+  angularAcceleration: 0
   bolita: {fileID: 909696456}
+  camara: {fileID: 0}
 --- !u!4 &560060318
 Transform:
   m_ObjectHideFlags: 0
