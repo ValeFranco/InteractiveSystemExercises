@@ -6,20 +6,14 @@ using UnityEngine;
 public class LookAtMovement : MonoBehaviour
 {
     private LinearMovement movement;
-    [SerializeField] private Transform target;
     private void Awake()
     {
         movement = GetComponent<LinearMovement>();
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        target.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float radians = Mathf.Atan2(movement.Velocity.y, movement.Velocity.x);
         RotateZ(radians);
     }
-
-    private void RotateZ(float radians)
-    {
-        transform.rotation = Quaternion.Euler(0, 0, radians * Mathf.Rad2Deg);
-    }
+    private void RotateZ(float radians) { transform.rotation = Quaternion.Euler(0, 0, radians * Mathf.Rad2Deg); }
 }
