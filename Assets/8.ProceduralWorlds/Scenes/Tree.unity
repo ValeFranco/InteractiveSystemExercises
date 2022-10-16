@@ -246,7 +246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   branchPrefab: {fileID: 8179290043529324605, guid: 0da54fc0f5bca8d458c6bb0fa4c13ddb, type: 3}
-  totalLevels: 4
+  totalLevels: 12
+  initialSize: 3
+  reductionPerLevel: 0.055
 --- !u!4 &853299928
 Transform:
   m_ObjectHideFlags: 0
