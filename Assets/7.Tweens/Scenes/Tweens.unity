@@ -320,7 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 1315553760}
   normalizedTime: 0
-  duration: 5
+  duration: 2
   initialColor: {r: 1, g: 1, b: 1, a: 1}
   finalColor: {r: 0.54116637, g: 0.121395506, b: 0.8301887, a: 1}
 --- !u!212 &1456607603

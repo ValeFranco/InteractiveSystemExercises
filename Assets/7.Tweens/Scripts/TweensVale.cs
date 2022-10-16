@@ -26,8 +26,8 @@ public class TweensVale : MonoBehaviour
     void Update()
     {
         normalizedTime = currentTime / duration;
-        transform.position = Vector3.Lerp(initialPosition, finalPosition, normalizedTime);
-        spriteRenderer.color = Color.Lerp(initialColor, finalColor, normalizedTime);
+        transform.position = Vector3.Lerp(initialPosition, finalPosition, EaseInQuad(normalizedTime));
+        spriteRenderer.color = Color.Lerp(initialColor, finalColor, EaseInQuad(normalizedTime));
         currentTime += Time.deltaTime;
 
         if ( normalizedTime>=1)
@@ -43,5 +43,10 @@ public class TweensVale : MonoBehaviour
         currentTime = 0f;
         initialPosition = transform.position;
         finalPosition = targetTransform.position;
+    }
+
+    private float EaseInQuad(float x)
+    {
+        return x * x;
     }
 }
